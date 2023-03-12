@@ -1,18 +1,23 @@
 import sys
-N, M = map(int,sys.stdin.readline().split())
-trees = list(map(int,sys.stdin.readline().split()))
+n, m = map(int, sys.stdin.readline().split())
+tree = list(map(int, sys.stdin.readline().split()))
 ans = 0
-left, right = 0, max(trees)
-trees.sort()
-while left <= right:
+
+tree.sort()
+
+start = 0
+end = max(tree)
+
+while start <= end:
     total = 0
-    mid = (left+right)//2
-    for tree in trees:
-        if tree > mid:
-            total += (tree-mid)
-    if total < M:
-        right = mid -1
+    mid = (start + end) // 2
+    for x in tree:
+        if mid < x:
+            total += (x - mid) # 자른 길이의 합
+    if total < m: #나무가 모자랄 경우
+        end = mid - 1 #왼쪽 탐색을 하기 위해 end를 줄임
     else:
         ans = mid
-        left = mid +1
+        start = mid + 1
+
 print(ans)
