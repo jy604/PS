@@ -1,17 +1,17 @@
 import sys
 
 
-def binary_serach(arr, target): # array, target, left, right
-    left = 0
-    right = len(arr) - 1
-    while left <= right:
-        mid = (left + right) //2
+def binary_search(arr, target):
+    start = 0
+    end = len(arr) - 1
+    while start <= end:
+        mid = (start + end) // 2  # arr의 idx
         if target == arr[mid]:
             return 1
-        elif target > arr[mid]:
-            left = mid + 1
+        if target > arr[mid]:
+            start = mid + 1
         else:
-            right = mid - 1
+            end = mid - 1
     return 0
 
 
@@ -19,7 +19,8 @@ n = int(sys.stdin.readline())
 arr = list(map(int, sys.stdin.readline().split()))
 m = int(sys.stdin.readline())
 target = list(map(int, sys.stdin.readline().split()))
-arr.sort() # 이분 탐색은 항상 정렬된 상태로 시작
 
-for k in range(m):
-    print(binary_serach(arr, target[k]))
+arr.sort()
+
+for i in range(m):
+    print(binary_search(arr, target[i]))
