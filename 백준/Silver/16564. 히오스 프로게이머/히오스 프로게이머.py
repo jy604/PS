@@ -1,19 +1,19 @@
 import sys
 n, k = map(int, sys.stdin.readline().split())
-x = []
+level = []
 for _ in range(n):
-    x.append(int(sys.stdin.readline()))
+    level.append(int(sys.stdin.readline()))
 
-x.sort()
-start = x[0]
-end = x[-1] + k
+level.sort()
+start = level[0]
+end = level[-1] + k
 result = 0
 while start <= end:
-    mid = (start + end) // 2
     total = 0
-    for i in x:
-        if mid >= i:
-            total += (mid - i)
+    mid = (start + end) // 2
+    for x in level:
+        if x <= mid:
+            total += (mid - x)
     if total <= k:
         result = mid
         start = mid + 1
