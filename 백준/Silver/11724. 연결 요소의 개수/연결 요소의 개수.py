@@ -1,4 +1,4 @@
-# 연결 요소의 개수
+# 연결 요소의 개수 = dfs를 실행한 횟수
 import sys
 sys.setrecursionlimit(10**7)
 input = sys.stdin.readline
@@ -16,11 +16,7 @@ cnt = 0
 
 
 def dfs(v):
-    if visited[v] == 1:
-        return
-
     visited[v] = 1
-    # print(v, end= ' ')
     for i in graph[v]:
         if not visited[i]:
             dfs(i)
@@ -30,6 +26,5 @@ for i in range(1, n+1):
     if visited[i] == 0:
         cnt += 1
         dfs(i)
-# for i in visited:
-#     print(i, end=' ')
+
 print(cnt)
