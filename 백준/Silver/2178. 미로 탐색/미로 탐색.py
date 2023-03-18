@@ -1,10 +1,13 @@
+# 미로 탐색
+# bfs
 import sys
 from collections import deque
+input = sys.stdin.readline
 
 n, m = map(int, input().split())
 graph = []
 for i in range(n):
-    graph.append(list(map(int, input())))
+    graph.append(list(map(int, input().rstrip())))
 
 # 방향 표시 상, 하, 좌, 우
 dx = [-1, 1, 0, 0]
