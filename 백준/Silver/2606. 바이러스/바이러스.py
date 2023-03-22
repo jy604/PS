@@ -1,29 +1,27 @@
-# 바이러스
-import sys
-sys.setrecursionlimit(10**7)
-input = sys.stdin.readline
-n = int(input()) # 노드 수
-m = int(input()) # 간선 수
-graph = [[] for _ in range(n+1)]
-for _ in range(m):
-    u, v = map(int, input().split())
-    graph[u].append(v)
-    graph[v].append(u)
+from collections import deque
+n = int(input())
+m = int(input())
+graph = [[] for _ in range(n + 1)]
+for i in range(m): # 간선의 수만큼 돌려야함
+    a, b = map(int, input().split())
+    graph[a].append(b)
+    graph[b].append(a)
 
 visited = [0] * (n + 1)
+cnt = 0
 
 
-def dfs(v):
+def bfs(v):
     global cnt
-    visited[v] = 1
-    for i in graph[v]:
-        if not visited[i]:
-            dfs(i)
-            # print(visited[i])
-#
-# for i in range(1, n+1):
-#     if visited[i] == 0:
-#         cnt += 1
-#         dfs(i)
-dfs(1)
-print(sum(visited) - 1) # 맨 앞 빈 노드 뺴기
+    q = deque([v])
+    while q:
+        x = q.popleft()
+        visited[x] = 1
+        for i in graph[x]:
+            if visited[i] ==0:
+                visited[i] = 1
+                q.append(i)
+                cnt += 1
+    print(cnt)
+
+bfs(1)
