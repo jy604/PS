@@ -21,7 +21,7 @@ def bfs(start):
             if not visited[i]:
                 visited[i] = visited[start] + 1
                 q.append(i)
-    result = sum(visited[1:])
+    result = sum(visited)
     return result
 
 res = []
