@@ -11,14 +11,14 @@ def bfs(start):
     q = deque()
     q.append(start)
     # 각 노드별 최소경로이기때문에 방문할때마다 초기화해야함
-    visited = [-1] * (n + 1)
-    visited[start] = 0
+    visited = [0] * (n + 1)
+    visited[start] = 1
 
     while q:
         start = q.popleft()
 
         for i in g[start]:
-            if visited[i] == -1:
+            if not visited[i]:
                 visited[i] = visited[start] + 1
                 q.append(i)
     result = sum(visited[1:])
@@ -27,4 +27,5 @@ def bfs(start):
 res = []
 for i in range(1, n + 1):
     res.append(bfs(i))
+    # print(res)
 print(res.index(min(res)) + 1)
